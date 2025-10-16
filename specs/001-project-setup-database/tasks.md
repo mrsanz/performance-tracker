@@ -42,7 +42,7 @@
 - [ ] T014 Create migration 0001_create_persons.sql (up/down) per data-model.md
 - [ ] T015 Create migration 0000_create_performance_events.sql (up/down) per data-model.md
 - [ ] T016 Create migration runner script in src/backend/database/migrate.ts with idempotent logic
-- [ ] T017 Create database seeding script in src/backend/database/seed.ts generating 5 Persons and 20 PerformanceEvents
+- [ ] T017 Create database seeding script in src/backend/database/seed.ts generating 5 Persons and 60 PerformanceEvents
 - [ ] T018 Add db:migrate, db:migrate:down, db:seed, db:generate, db:reset, db:studio scripts to package.json
 - [ ] T019 Create Fastify app initialization in src/backend/index.ts
 - [ ] T020 Create environment validation plugin in src/backend/plugins/env.ts using fastify-env
