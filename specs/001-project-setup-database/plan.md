@@ -55,6 +55,11 @@ specs/[###-feature]/
 └── tasks.md             # Phase 2 output (/speckit.tasks command - NOT created by /speckit.plan)
 ```
 
+### Sample Data Seeding
+Include a task and script for populating the database with sample Person and PerformanceEvent data (`bun run db:seed`).
+
+**Terminology Standardization**: All references to users/persons in this plan use 'Person' for consistency with the data model.
+
 ### Source Code (repository root)
 ```
 src/

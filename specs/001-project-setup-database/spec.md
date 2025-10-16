@@ -55,16 +55,17 @@ The project includes a Dockerfile and infrastructure folder with Helm chart temp
 
 ### User Story 3 – Database and ORM are ready for use (Priority: P3)
 
-The project includes Drizzle ORM configured for Bun's native SQLite, with migration scripts for up/down and a starter schema for a generic performance event.
+The project includes Drizzle ORM configured for Bun's native SQLite, with migration scripts for up/down and starter schemas for Person and PerformanceEvent entities with their relationship. Sample data can be seeded for local development.
 
 **Why this priority**: Ensures a robust, type-safe foundation for all future data features.
 
-**Independent Test**: Can be fully tested by running migration scripts and inspecting the database for the expected schema.
+**Independent Test**: Can be fully tested by running migration scripts, seeding sample data, and inspecting the database for the expected schema and records.
 
 **Acceptance Scenarios**:
-1. **Given** the repo, **When** the migration script is run, **Then** the database schema is created as specified.
-2. **Given** the ORM config, **When** a test query is run, **Then** it executes successfully against the SQLite database.
+1. **Given** the repo, **When** the migration script is run, **Then** the database schemas for Person and PerformanceEvent are created as specified with proper foreign key relationships.
+2. **Given** the ORM config, **When** a test query is run that fetches events by personId, **Then** it executes successfully against the SQLite database.
 3. **Given** migrations already run, **When** the migration script is run again, **Then** it is idempotent and brings DB to proper version.
+4. **Given** an empty database, **When** the seeding command is run, **Then** sample Person and PerformanceEvent records are created for development and testing.
 
 ---
 
@@ -123,7 +124,7 @@ The project includes a basic React application using Vite for build tooling and 
 - **FR-006**: System MUST use dotenv and fastify-env for environment variable management.
 - **FR-007**: System MUST NOT start and MUST display clear error messages if configuration or database setup fails.
 - **FR-008**: System MUST include a folder structure separating infrastructure, backend, and (future) frontend code.
-- **FR-009**: System MUST configure Drizzle ORM for Bun SQLite and provide a working example query.
+- **FR-009**: System MUST configure Drizzle ORM for Bun SQLite and provide a working example query that demonstrates fetching PerformanceEvents filtered by personId and timestamp range.
 - **FR-010**: System MUST include linting and formatting rules (ts-standard) with documented setup for pre-commit hooks.
 - **FR-011**: System MUST provide recommended VSCode extensions for running test suites, troubleshooting workflows, and system tools.
 - **FR-012**: System MUST include GitHub Actions workflow with separate parallel jobs for: tests, build, and Docker image compilation.
@@ -131,10 +132,14 @@ The project includes a basic React application using Vite for build tooling and 
 - **FR-014**: System MUST prevent SQL injection through parameterized queries enforced by Drizzle ORM at the database layer.
 - **FR-015**: System MUST include a basic React frontend using Vite for build tooling and TanStack Query for server state management.
 - **FR-016**: System MUST configure the frontend to communicate with the backend API with proper CORS handling.
+- **FR-017**: System MUST include database schema for Person entity with unique email constraint, indexed email field, and foreign key relationship from PerformanceEvent to Person.
+- **FR-018**: System MUST provide a database seeding command that populates sample Person and PerformanceEvent records for local development and testing purposes.
 
 ### Key Entities
 
-- **PerformanceEvent**: Represents a generic event to be tracked for performance analysis. Attributes: id, timestamp, type, payload (JSON or text, to be refined in future specs).
+- **Person**: Represents an employee or individual in the system. Used for associating performance events and tracking user activity. Attributes: id (UUID), email (unique), firstName, lastName, title, startDate, createdAt, updatedAt.
+
+- **PerformanceEvent**: Represents a generic event to be tracked for performance analysis. Associated with a Person via personId foreign key. Attributes: id (UUID), personId (foreign key to Person), timestamp, type, payload (JSON), createdAt, updatedAt.
 
 
 ## Success Criteria *(mandatory)*
@@ -153,3 +158,5 @@ The project includes a basic React application using Vite for build tooling and 
 - **SC-009**: CORS blocks unauthorized origins and allows whitelisted origins based on environment configuration.
 - **SC-010**: All database queries use parameterized inputs through Drizzle ORM, preventing SQL injection.
 - **SC-011**: Frontend dev server starts successfully and can make API calls to the backend using TanStack Query.
+- **SC-012**: Person entity schema is created with all required fields, unique email constraint, and proper indexes; PerformanceEvent includes personId foreign key.
+- **SC-013**: Sample data seeding command (`bun run db:seed`) successfully creates at least 5 Person records and 60 generated PerformanceEvent records with at most 6 types (representing different data sources) and timestamps.

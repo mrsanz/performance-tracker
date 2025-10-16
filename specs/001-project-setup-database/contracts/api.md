@@ -16,8 +16,6 @@
     "environment": "development",
     "name": "performance-tracker",
     "status": "running",
-    "uptime": 3600,
-    "version": "0.1.0"
   },
   "database": {
     "connected": true,
@@ -37,12 +35,27 @@
     "status": "running",
     "uptime": 3600,
     "version": "0.1.0"
+
+  **Response**: 200 OK
+  // Only indexed fields are returned for fast pagination and subsequent queries
+  ```json
+  {
+    "data": [
+      {
+        "id": "550e8400-e29b-41d4-a716-446655440000",
+        "personId": "b1c2d3e4-5678-1234-9abc-1234567890ab",
+        "type": "page_load",
+        "timestamp": "2025-10-16T12:00:00Z"
+      }
+      // ...more events
+    ],
+    "nextCursor": "YmFzZTY0LWVuY29kZWQtZXZlbnRJRA==" // base64-encoded event ID or null
+  }
+  ```
   },
   "status": "unhealthy",
   "error": "Database connection failed",
   "timestamp": "2025-10-16T12:00:00Z"
-}
-```
 
 ---
 
@@ -63,6 +76,28 @@
 }
 ```
 
+
+  **Response**: 200 OK
+  // Only indexed fields are returned for fast pagination and subsequent queries
+  ```json
+  {
+    "data": [
+      {
+        "id": "b1c2d3e4-5678-1234-9abc-1234567890ab",
+        "email": "jane.doe@example.com",
+        "startDate": "2022-01-15T00:00:00Z"
+      }
+      // ...more persons
+    ],
+    "nextCursor": "YmFzZTY0LWVuY29kZWQtcGVyc29uSUQ=" // base64-encoded person ID or null
+  }
+  ```
+
+  ---
+
+  ## Indexed Data Only for Paginated APIs
+
+  For all cursor-based (plural) APIs, only indexed fields are returned in the response. This ensures fast pagination and efficient subsequent queries. To fetch full details, use the singular endpoint (e.g., `/api/events/:id` or `/api/persons/:id`).
 ---
 
 ## Performance Events API (Example - Full Implementation in Spec 002)
@@ -171,24 +206,46 @@
 - `cursor` (optional): string, opaque cursor for pagination
 - `limit` (optional): number, max results per page (default: 20, max: 100)
 
+
 **Response**: 200 OK
+// Only indexed fields are returned for fast pagination and subsequent queries
 ```json
 {
   "data": [
     {
       "id": "550e8400-e29b-41d4-a716-446655440000",
-      "type": "github-exapmle",
+      "personId": "b1c2d3e4-5678-1234-9abc-1234567890ab",
+      "type": "page_load",
+      "timestamp": "2025-10-16T12:00:00Z"
     }
+    // ...more events
   ],
-  "nextCursor": "opaque-cursor-string-or-null"
+  "nextCursor": "YmFzZTY0LWVuY29kZWQtZXZlbnRJRA==" // base64-encoded event ID or null
+}
+```
+
+**Error Response**: 400 Bad Request (invalid cursor)
+```json
+{
+  "error": "Invalid cursor",
+  "message": "Cursor format is invalid or expired"
+}
+```
+
+**Error Response**: 500 Internal Server Error
+```json
+{
+  "error": "Failed to fetch events",
+  "message": "Database error occurred"
 }
 ```
 
 ---
 
-### GET /api/users/:id
 
-**Purpose**: Retrieve a single user (person) by ID
+### GET /api/persons/:id
+
+**Purpose**: Retrieve a single person by ID
 
 **Request**: None
 
@@ -209,30 +266,49 @@
 **Error Response**: 404 Not Found
 ```json
 {
-  "error": "User not found",
+  "error": "Person not found",
   "id": "invalid-uuid"
 }
 ```
 
-### GET /api/users
 
-**Purpose**: List users (paginated, cursor-based)
+### GET /api/persons
+
+**Purpose**: List persons (paginated, cursor-based)
 
 **Query Parameters**:
-- `cursor` (optional): string, opaque cursor for pagination
+- `cursor` (optional): string, opaque cursor for pagination (e.g., base64-encoded person ID)
 - `limit` (optional): number, max results per page (default: 20, max: 100)
 
 **Response**: 200 OK
+// Only indexed fields are returned for fast pagination and subsequent queries
 ```json
 {
   "data": [
     {
       "id": "b1c2d3e4-5678-1234-9abc-1234567890ab",
       "email": "jane.doe@example.com",
+      "startDate": "2022-01-15T00:00:00Z"
     }
-    // ...more users
+    // ...more persons
   ],
-  "nextCursor": "opaque-cursor-string-or-null"
+  "nextCursor": "YmFzZTY0LWVuY29kZWQtcGVyc29uSUQ=" // base64-encoded person ID or null
+}
+```
+
+**Error Response**: 400 Bad Request (invalid cursor)
+```json
+{
+  "error": "Invalid cursor",
+  "message": "Cursor format is invalid or expired"
+}
+```
+
+**Error Response**: 500 Internal Server Error
+```json
+{
+  "error": "Failed to fetch persons",
+  "message": "Database error occurred"
 }
 ```
 

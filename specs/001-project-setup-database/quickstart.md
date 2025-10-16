@@ -211,7 +211,7 @@ bun run build:docker
 ### Docker
 
 ```bash
-# Build Docker image (use version from package.json)
+# Build Docker image (use version from package.json) - and tag it twice
 docker build -t performance-tracker:$(jq -r .version package.json) -t performance-tracker:latest ./infrastructure/Dockerfile
 
 # Run container
