@@ -44,12 +44,12 @@
 - [X] T016 Create migration runner script in src/backend/database/migrate.ts with idempotent logic
 - [X] T017 Create database seeding script in src/backend/database/seed.ts generating 5 Persons and 60 PerformanceEvents with 6 different unique performance event types like `pr-commit`, `jira-update`, `pr-review`, etc...
 - [X] T018 Add db:migrate, db:migrate:down, db:seed, db:generate, db:reset, db:studio scripts to package.json
-- [ ] T019 Create Fastify app initialization in src/backend/index.ts
-- [ ] T020 Create environment validation plugin in src/backend/plugins/env.ts using fastify-env
-- [ ] T021 Create database plugin in src/backend/plugins/db.ts registering Drizzle client
-- [ ] T022 Create CORS plugin in src/backend/plugins/cors.ts with environment-based whitelist per research.md
-- [ ] T023 Create Effect error handling utilities in src/backend/lib/errors.ts
-- [ ] T024 Add dev:server, build:server, test scripts to package.json
+- [X] T019 Create Fastify app initialization in src/backend/index.ts
+- [X] T020 Create environment validation plugin in src/backend/plugins/env.ts using fastify-env
+- [X] T021 Create database plugin in src/backend/plugins/db.ts registering Drizzle client
+- [X] T022 Create CORS plugin in src/backend/plugins/cors.ts with environment-based whitelist per research.md
+- [X] T023 Create Effect error handling utilities in src/backend/lib/errors.ts
+- [X] T024 Add dev:server, build:server, test scripts to package.json
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 
@@ -63,13 +63,13 @@
 
 ### Implementation for User Story 1
 
-- [ ] T025 [P] [US1] Create health check plugin in src/backend/plugins/health.ts implementing /healthz endpoint per contracts/api.md
-- [ ] T026 [P] [US1] Create info endpoint plugin in src/backend/plugins/info.ts implementing /infoz endpoint per contracts/api.md
-- [ ] T027 [US1] Register health and info plugins in src/backend/index.ts
-- [ ] T028 [US1] Create example query in src/backend/database/queries/performance-events.ts demonstrating personId + timestamp filter
-- [ ] T029 [US1] Add startup validation in src/backend/index.ts checking database connection and failing fast with clear errors
-- [ ] T030 [US1] Create development startup script that runs migrations and starts server
-- [ ] T031 [US1] Update quickstart.md Setup section with exact clone, install, migrate, run steps
+- [X] T025 [P] [US1] Create health check plugin in src/backend/plugins/health.ts implementing /healthz endpoint per contracts/api.md
+- [X] T026 [P] [US1] Create info endpoint plugin in src/backend/plugins/info.ts implementing /infoz endpoint per contracts/api.md
+- [X] T027 [US1] Register health and info plugins in src/backend/index.ts
+- [X] T028 [US1] Create example query in src/backend/database/queries/performance-events.ts demonstrating personId + timestamp filter
+- [X] T029 [US1] Add startup validation in src/backend/index.ts checking database connection and failing fast with clear errors
+- [X] T030 [US1] Create development startup script that runs migrations and starts server
+- [X] T031 [US1] Update quickstart.md Setup section with exact clone, install, migrate, run steps
 - [ ] T032 [US1] Verify SC-001: Clone to running server takes <10 minutes
 - [ ] T033 [US1] Verify SC-002: /healthz returns app version, database connection, latest migration
 - [ ] T034 [US1] Verify SC-002a: /infoz returns server status and version

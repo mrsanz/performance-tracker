@@ -54,28 +54,26 @@ NODE_ENV=development
 # Run migrations (creates database and schema)
 bun run db:migrate
 
+# (Optional) Seed database with sample data
+bun run db:seed
+
 # Verify database created
 ls -la data/performance-tracker.db
 ```
 
-### 4. Start Development Servers
+### 4. Start Development Server
 
-**Option A: Run both servers simultaneously**
 ```bash
+# Run migrations and start server (recommended for first run)
 bun run dev
-```
 
-**Option B: Run servers separately**
-
-Terminal 1 - Backend:
-```bash
+# Or start just the server with hot reload:
 bun run dev:server
 ```
 
-Terminal 2 - Frontend:
-```bash
-bun run dev:client
-```
+The server will start on http://localhost:3000 with:
+- Startup database validation (fails fast if DB unreachable)
+- Hot module reloading for rapid development
 
 ---
 
@@ -90,20 +88,41 @@ curl http://localhost:3000/healthz
 # Expected response:
 # {
 #   "status": "healthy",
-#   "app": { "version": "0.1.0", "name": "performance-tracker" },
-#   "database": { "connected": true, ... }
+#   "app": {
+#     "environment": "development",
+#     "name": "performance-tracker",
+#     "status": "running",
+#     "uptime": 5,
+#     "version": "0.1.0"
+#   },
+#   "database": {
+#     "connected": true,
+#     "latestMigration": "0000_ambitious_justice",
+#     "migrationDate": "2025-01-01T12:00:00.000Z"
+#   },
+#   "timestamp": "2025-01-01T12:00:05.123Z"
+# }
+
+# Info endpoint
+curl http://localhost:3000/infoz
+
+# Expected response:
+# {
+#   "environment": "development",
+#   "name": "performance-tracker",
+#   "status": "running",
+#   "uptime": 10,
+#   "version": "0.1.0"
 # }
 ```
 
-### 2. Check Frontend
+### 2. Explore Database with Drizzle Studio
 
-Open browser: http://localhost:5173
+```bash
+bun run db:studio
+```
 
-You should see the React application loaded.
-
-### 3. Test API from Frontend
-
-The frontend should successfully communicate with the backend via TanStack Query.
+Opens interactive database viewer at https://local.drizzle.studio
 
 ---
 
