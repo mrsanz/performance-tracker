@@ -5,7 +5,8 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "test": "bun test",
+    "test": "bun test --no-watch",
+    "test:e2e": "bun test ./**/*.e2e.ts",
     "lint": "ts-standard",
     "lint:fix": "ts-standard --fix",
     "print:version": "bun run src/backend/scripts/print-version.ts",

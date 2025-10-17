@@ -84,6 +84,7 @@ Long-lived data ingestion tasks MUST be isolated from the main API server with c
 **Code Organization**: Monorepo structure with clear API server/data ingestion/client separation and shared type definitions
 **Server Architecture**: Fastify plugin-based design enabling easy deconstruction into separate servers
 **API Design**: RESTful endpoints with Zod input validation, implicit response types, tested via fastify.inject()
+**Test Suffixes**: All end-to-end (E2E) tests or tests that modify application/database state MUST use a `.e2e.ts` file suffix. This ensures clear separation from unit/integration tests and prevents accidental state modification during standard test runs.
 **Data Ingestion**: Standardized interfaces for external data sources, idempotent transformations, resumable operations
 **Frontend Architecture**: Type-safe API client layer, Tailwind for styling, component library for data visualization
 **Testing Strategy**: TDD mandatory, Bun test runner with @testing-library, database test transactions with rollback
