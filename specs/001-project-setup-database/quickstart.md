@@ -33,7 +33,8 @@ Edit `.env` file:
 
 ```bash
 # Database
-DATABASE_URL=./data/performance-tracker.db
+# Path to SQLite database file
+DATABASE_PATH=./data/performance-tracker.db
 
 # Server
 PORT=3000
@@ -44,7 +45,7 @@ CORS_ORIGIN=http://localhost:5173
 
 # Application
 NODE_ENV=development
-APP_VERSION=0.1.0
+# Version is read from package.json (do not set APP_VERSION in .env)
 ```
 
 ### 3. Initialize Database

@@ -17,16 +17,16 @@
 
 **Purpose**: Project initialization and basic structure that all user stories will build upon
 
-- [ ] T001 Create root project structure: src/backend/, src/workers/, src/frontend/, infrastructure/, tests/
-- [ ] T002 Initialize Bun project with package.json including all dependencies from research.md
-- [ ] T003 [P] Configure TypeScript with tsconfig.json (strict mode, paths for @/ aliases)
-- [ ] T004 [P] Configure ts-standard linting in package.json and .ts-standard.yml
-- [ ] T005 [P] Create .env.example with DATABASE_URL, PORT, HOST, CORS_ORIGIN, NODE_ENV, APP_VERSION
-- [ ] T006 [P] Create .gitignore excluding .env, node_modules, dist/, data/
-- [ ] T007 [P] Create VSCode settings in .vscode/extensions.json recommending Bun, Tailwind, Drizzle, Effect extensions
-- [ ] T008 [P] Create README.md with project overview and link to quickstart.md
+ - [X] T001 Create root project structure: src/backend/, src/workers/, src/frontend/, infrastructure/, tests/
+ - [X] T002 Initialize Bun project with package.json including all dependencies from research.md
+ - [X] T003 [P] Configure TypeScript with tsconfig.json (strict mode, paths for @/ aliases)
+ - [X] T004 [P] Configure ts-standard linting in package.json and .ts-standard.yml
+  - [X] T005 [P] Create .env.example with DATABASE_PATH, PORT, HOST, CORS_ORIGIN, NODE_ENV
+ - [X] T006 [P] Create .gitignore excluding .env, node_modules, dist/, data/
+ - [X] T007 [P] Create VSCode settings in .vscode/extensions.json recommending Bun, Tailwind, Drizzle, Effect extensions
+ - [X] T008 [P] Create README.md with project overview and interpret and document relevant parts from the quickstart.md document pursuant to a developer perspective.
 
----
+---/
 
 ## Phase 2: Foundational (Blocking Prerequisites)
 
@@ -34,16 +34,16 @@
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T009 Create Drizzle ORM configuration in src/backend/database/drizzle.config.ts
-- [ ] T010 Create Person schema in src/backend/database/schema/persons.ts with all fields per data-model.md
-- [ ] T011 Create PerformanceEvent schema in src/backend/database/schema/performance-events.ts with personId FK
-- [ ] T012 Create database types export in src/backend/database/schema/index.ts
-- [ ] T013 Create database client connection in src/backend/database/client.ts using Bun SQLite
-- [ ] T014 Create migration 0001_create_persons.sql (up/down) per data-model.md
-- [ ] T015 Create migration 0000_create_performance_events.sql (up/down) per data-model.md
-- [ ] T016 Create migration runner script in src/backend/database/migrate.ts with idempotent logic
-- [ ] T017 Create database seeding script in src/backend/database/seed.ts generating 5 Persons and 60 PerformanceEvents
-- [ ] T018 Add db:migrate, db:migrate:down, db:seed, db:generate, db:reset, db:studio scripts to package.json
+- [X] T009 Create Drizzle ORM configuration in src/backend/database/drizzle.config.ts
+- [X] T010 Create Person schema in src/backend/database/schema/persons.ts with all fields per data-model.md
+- [X] T011 Create PerformanceEvent schema in src/backend/database/schema/performance-events.ts with personId FK
+- [X] T012 Create database types export in src/backend/database/schema/index.ts
+- [X] T013 Create database client connection in src/backend/database/client.ts using Bun SQLite
+- [X] T014 Create migration 0001_create_persons.sql (up/down) per data-model.md
+- [X] T015 Create migration 0000_create_performance_events.sql (up/down) per data-model.md
+- [X] T016 Create migration runner script in src/backend/database/migrate.ts with idempotent logic
+- [X] T017 Create database seeding script in src/backend/database/seed.ts generating 5 Persons and 60 PerformanceEvents with 6 different unique performance event types like `pr-commit`, `jira-update`, `pr-review`, etc...
+- [X] T018 Add db:migrate, db:migrate:down, db:seed, db:generate, db:reset, db:studio scripts to package.json
 - [ ] T019 Create Fastify app initialization in src/backend/index.ts
 - [ ] T020 Create environment validation plugin in src/backend/plugins/env.ts using fastify-env
 - [ ] T021 Create database plugin in src/backend/plugins/db.ts registering Drizzle client
@@ -74,7 +74,7 @@
 - [ ] T033 [US1] Verify SC-002: /healthz returns app version, database connection, latest migration
 - [ ] T034 [US1] Verify SC-002a: /infoz returns server status and version
 - [ ] T035 [US1] Verify SC-003: Migrations are idempotent when run multiple times
-- [ ] T036 [US1] Verify SC-007: Server fails to start with clear error when DATABASE_URL missing
+- [ ] T036 [US1] Verify SC-007: Server fails to start with clear error when DATABASE_PATH missing
 - [ ] T037 [US1] Verify SC-012: Person and PerformanceEvent schemas created with FK relationship
 - [ ] T038 [US1] Verify SC-013: `bun run db:seed` creates 5 Persons and 20 PerformanceEvents
 
@@ -98,7 +98,7 @@
 - [ ] T044 [P] [US2] Create Helm deployment.yaml template for app deployment
 - [ ] T045 [P] [US2] Create Helm service.yaml template for app service
 - [ ] T046 [P] [US2] Create Helm configmap.yaml template for non-secret configuration
-- [ ] T047 [P] [US2] Create Helm secret.yaml template for sensitive configuration (DATABASE_URL)
+- [ ] T047 [P] [US2] Create Helm secret.yaml template for sensitive configuration (DATABASE_PATH)
 - [ ] T048 [US2] Add build:docker script to package.json using package.json version tag
 - [ ] T049 [US2] Create docker-compose.yml for local container testing
 - [ ] T050 [US2] Update quickstart.md Docker section with build and run commands

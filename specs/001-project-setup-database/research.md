@@ -194,7 +194,7 @@ export const queryDatabase = (id: string): Effect.Effect<User, DatabaseError> =>
 **Required Environment Variables**:
 ```bash
 # Database
-DATABASE_URL=./data/performance-tracker.db
+DATABASE_PATH=./data/performance-tracker.db
 
 # Server
 PORT=3000
@@ -205,14 +205,14 @@ CORS_ORIGIN=http://localhost:5173
 
 # Application
 NODE_ENV=development
-APP_VERSION=0.1.0
+##
 ```
 
 **Implementation Notes**:
 - How to add environment variables and configuration is well described in the root `README.md`
 - Disctiontion between develpment vs prodcution is documented
 - `NODE_ENV=production` is the default setting unless running the app in dev mode via `bun run dev`
-- `APP_VERSION` comes from the `package.json`
+- Version comes from the `package.json` (read at runtime; no APP_VERSION in .env)
 - `.env-local` and `.env-example` is documented
 - `.env-local` and `.env-example` is generated 
 

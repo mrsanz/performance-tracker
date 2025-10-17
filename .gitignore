@@ -4,6 +4,7 @@ node_modules
 # output
 out
 dist
+build
 *.tgz
 
 # code coverage
@@ -21,11 +22,17 @@ report.[0-9]_.[0-9]_.[0-9]_.[0-9]_.json
 .env.test.local
 .env.production.local
 .env.local
+.env.*
 
 # caches
 .eslintcache
 .cache
 *.tsbuildinfo
+*.log
+*.tmp
+Thumbs.db
+.vscode/
+data/
 
 # IntelliJ based IDEs
 .idea
