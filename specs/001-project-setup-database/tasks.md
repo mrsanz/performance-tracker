@@ -70,13 +70,13 @@
 - [X] T029 [US1] Add startup validation in src/backend/index.ts checking database connection and failing fast with clear errors
 - [X] T030 [US1] Create development startup script that runs migrations and starts server
 - [X] T031 [US1] Update quickstart.md Setup section with exact clone, install, migrate, run steps
-- [ ] T032 [US1] Verify SC-001: Clone to running server takes <10 minutes
-- [ ] T033 [US1] Verify SC-002: /healthz returns app version, database connection, latest migration
-- [ ] T034 [US1] Verify SC-002a: /infoz returns server status and version
-- [ ] T035 [US1] Verify SC-003: Migrations are idempotent when run multiple times
-- [ ] T036 [US1] Verify SC-007: Server fails to start with clear error when DATABASE_PATH missing
-- [ ] T037 [US1] Verify SC-012: Person and PerformanceEvent schemas created with FK relationship
-- [ ] T038 [US1] Verify SC-013: `bun run db:seed` creates 5 Persons and 20 PerformanceEvents
+- [X] T032 [US1] Verify SC-001: Clone to running server takes <10 minutes
+- [X] T033 [US1] Verify SC-002: /healthz returns app version, database connection, latest migration
+- [X] T034 [US1] Verify SC-002a: /infoz returns server status and version
+- [X] T035 [US1] Verify SC-003: Migrations are idempotent when run multiple times
+- [X] T036 [US1] Verify SC-007: Server fails to start with clear error when DATABASE_PATH missing
+- [X] T037 [US1] Verify SC-012: Person and PerformanceEvent schemas created with FK relationship
+- [X] T038 [US1] Verify SC-013: `bun run db:seed` creates 5 Persons and 20 PerformanceEvents
 
 **Checkpoint**: Developer can now run the full backend stack locally with health endpoints
 
