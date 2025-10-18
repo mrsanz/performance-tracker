@@ -166,18 +166,18 @@
 
 ### Implementation for User Story 5
 
-- [ ] T076 [P] [US5] Initialize Vite project in src/frontend/ with React and TypeScript templates
-- [ ] T077 [P] [US5] Install TanStack Query, Tailwind CSS, and component library dependencies
-- [ ] T078 [P] [US5] Configure Tailwind in src/frontend/tailwind.config.ts
-- [ ] T079 [P] [US5] Configure Vite proxy in src/frontend/vite.config.ts pointing to backend
-- [ ] T080 [P] [US5] Create TanStack Query client setup in src/frontend/lib/query-client.ts
-- [ ] T081 [P] [US5] Create API client utilities in src/frontend/lib/api-client.ts for fetch calls
-- [ ] T082 [P] [US5] Create health check hook in src/frontend/hooks/useHealth.ts using TanStack Query
-- [ ] T083 [P] [US5] Create basic App component in src/frontend/App.tsx displaying health status
-- [ ] T084 [P] [US5] Create main entry point in src/frontend/main.tsx with QueryClientProvider
-- [ ] T085 [P] [US5] Create index.html in src/frontend/
-- [ ] T086 [US5] Add dev:client, build:client scripts to package.json
-- [ ] T087 [US5] Add dev script to package.json running both dev:server and dev:client concurrently
+- [X] T076 [P] [US5] Initialize Vite project in src/frontend/ with React and TypeScript templates
+- [X] T077 [P] [US5] Install TanStack Query, Tailwind CSS, and component library dependencies
+- [X] T078 [P] [US5] Configure Tailwind in src/frontend/tailwind.config.ts
+- [X] T079 [P] [US5] Configure Vite proxy in src/frontend/vite.config.ts pointing to backend
+- [X] T080 [P] [US5] Create TanStack Query client setup in src/frontend/lib/query-client.ts
+- [X] T081 [P] [US5] Create API client utilities in src/frontend/lib/api-client.ts for fetch calls
+- [X] T082 [P] [US5] Create health check hook in src/frontend/hooks/useHealth.ts using TanStack Query
+- [X] T083 [P] [US5] Create basic App component in src/frontend/App.tsx displaying health status
+- [X] T084 [P] [US5] Create main entry point in src/frontend/main.tsx with QueryClientProvider
+- [X] T085 [P] [US5] Create index.html in src/frontend/
+- [X] T086 [US5] Add dev:client, build:client scripts to package.json
+- [X] T087 [US5] Add dev script to package.json running both dev:server and dev:client concurrently
 - [ ] T088 [US5] Update quickstart.md with frontend startup instructions
 - [ ] T089 [US5] Verify SC-009: CORS allows frontend origin from env, blocks others
 - [ ] T090 [US5] Verify SC-011: Frontend dev server starts and API calls work
@@ -317,7 +317,7 @@ If multiple developers available:
 
 After completing all tasks, verify these outcomes from spec.md:
 
-- ✅ SC-001: Developer setup time <10 minutes
+- ✅ SC-001: Developer build and run time <10 minutes, with instructions in Readme.md to run the app from start to finish.
 - ✅ SC-002/SC-002a: Health and info endpoints return correct data
 - ✅ SC-003: Migrations are idempotent
 - ✅ SC-004: Docker image builds and runs
@@ -330,5 +330,6 @@ After completing all tasks, verify these outcomes from spec.md:
 - ✅ SC-011: Frontend communicates with backend
 - ✅ SC-012: Person and PerformanceEvent schemas correct
 - ✅ SC-013: Seed command creates sample data
+- ✅ SC-014: TDD style tests are available for frontend, backend and db updates.
 
-All 13 success criteria must pass before considering this feature complete.
+All 14 success criteria must pass before considering this feature complete.

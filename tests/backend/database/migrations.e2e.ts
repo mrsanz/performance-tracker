@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'bun:test'
 import { db } from '@/backend/database/client'
-import { runMigrations } from '@/backend/database/migrate'
+import { runMigrations } from '@/backend/database/scripts/migrate'
 
 describe('Migrations', () => {
 	test('are idempotent when run multiple times', async () => {

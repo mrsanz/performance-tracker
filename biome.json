@@ -20,6 +20,9 @@
 			"style": {
 				"noNonNullAssertion": "off",
 				"useNodejsImportProtocol": "warn"
+			},
+			"suspicious": {
+				"noUnknownAtRules": "off"
 			}
 		}
 	},

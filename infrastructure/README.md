@@ -36,3 +36,4 @@ This project ships a Docker image that supports development and production workl
 
 - The image installs only production dependencies to keep size minimal and avoid native build toolchains.
 - The server is built during the image build and started from `dist/server.js`.
+Re

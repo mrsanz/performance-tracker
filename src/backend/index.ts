@@ -6,6 +6,7 @@ import dbPlugin from './plugins/db'
 import envPlugin from './plugins/env'
 import healthPlugin from './plugins/health'
 import infoPlugin from './plugins/info'
+import { staticPlugin } from './plugins/static'
 
 process.on('uncaughtException', (err) => {
 	console.error(err)
@@ -32,6 +33,11 @@ async function buildServer() {
 	await app.register(dbPlugin)
 	await app.register(healthPlugin)
 	await app.register(infoPlugin)
+
+	// Register static file serving last (after API routes)
+	if (process.env.NODE_ENV !== 'test') {
+		await app.register(staticPlugin)
+	}
 
 	return await app
 }
