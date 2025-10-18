@@ -24,7 +24,24 @@ export async function getEventsByPersonAndTimeRange(
 		.orderBy(performanceEvents.timestamp)
 }
 
-// Effect-wrapped variant for composability
+/**
+ * Effect-wrapped variant for getting performance events by person and time range
+ * Composable with other Effect operations for functional error handling
+ * @param personId - UUID of the person whose events to retrieve
+ * @param startTime - Start of time range (inclusive)
+ * @param endTime - End of time range (inclusive)
+ * @returns Effect that resolves to array of events sorted by timestamp
+ * @example
+ * ```typescript
+ * const events = await Effect.runPromise(
+ *   getEventsByPersonAndTimeRangeE(
+ *     'person-id',
+ *     new Date('2025-01-01'),
+ *     new Date('2025-12-31')
+ *   )
+ * )
+ * ```
+ */
 export const getEventsByPersonAndTimeRangeE = (
 	personId: string,
 	startTime: Date,

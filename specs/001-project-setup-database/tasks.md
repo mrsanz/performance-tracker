@@ -191,16 +191,16 @@
 
 **Purpose**: Final touches that affect multiple user stories
 
-- [ ] T092 [P] Create comprehensive README.md with badges, features, tech stack, and quickstart link
-- [ ] T093 [P] Add TSDoc comments to all exported functions per constitution requirement
-- [ ] T094 [P] Create API documentation in docs/api.md based on contracts/api.md
-- [ ] T095 [P] Create architecture diagram in docs/architecture.md showing plugin structure
-- [ ] T096 [P] Verify SQL injection prevention: test malicious input through Drizzle (SC-010)
-- [ ] T097 [P] Create example test file in tests/backend/health.test.ts using fastify.inject()
-- [ ] T098 [P] Create example test file in tests/frontend/App.test.tsx using @testing-library/react
+ - [X] T092 [P] Create comprehensive README.md with badges, features, tech stack, and quickstart link
+- [X] T093 [P] Add TSDoc comments to all exported functions per constitution requirement
+- [X] T094 [P] Create API documentation in docs/api.md based on contracts/api.md
+- [X] T095 [P] Create architecture diagram in docs/architecture.md showing plugin structure
+- [X] T096 [P] Verify SQL injection prevention: test malicious input through Drizzle (SC-010)
+- [X] T097 [P] Create example test file in tests/backend/health.test.ts using fastify.inject()
+- [X] T098 [P] Create example test file in tests/frontend/App.test.tsx using @testing-library/react
 - [ ] T099 Run full quickstart.md validation from clean clone to verify all steps work
-- [ ] T100 Final constitution check against all requirements in plan.md
-- [ ] T101 Create release notes summarizing what was delivered per spec.md success criteria
+- [X] T100 Final constitution check against all requirements in plan.md
+- [X] T101 Create release notes summarizing what was delivered per spec.md success criteria
 
 ---
 
