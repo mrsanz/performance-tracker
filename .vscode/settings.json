@@ -9,5 +9,11 @@
     "chat.tools.terminal.autoApprove": {
         ".specify/scripts/bash/": true,
         ".specify/scripts/powershell/": true
+    },
+    "terminal.integrated.defaultProfile.windows": "Git Bash",
+    "terminal.integrated.profiles.windows": {
+    "Git Bash": {
+        "path": "C:\\Program Files\\Git\\bin\\bash.exe",
+        "icon": "terminal-bash"
     }
 }

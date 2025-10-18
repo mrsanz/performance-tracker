@@ -13,6 +13,8 @@
     "dev": "bun run db:migrate && bun --hot src/backend/index.ts",
     "dev:server": "bun --hot src/backend/index.ts",
     "build:server": "bun build --target bun --outfile dist/server.js src/backend/index.ts",
+    "build:docker": "docker build -t performance-tracker -f ./infrastructure/Dockerfile .",
+  "smoke:container": "bash ./scripts/smoke-container.sh performance-tracker",
     "db:migrate": "bun run src/backend/database/migrate.ts",
     "db:generate": "bunx drizzle-kit generate",
     "db:seed": "bun run src/backend/database/seed.ts",

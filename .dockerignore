@@ -1,0 +1,10 @@
+node_modules/
+dist/
+build/
+.git/
+Dockerfile*
+*.log*
+.env*
+coverage/
+tests/
+specs/

@@ -1,0 +1,13 @@
+replicaCount: 1
+image:
+  repository: performance-tracker
+  tag: "latest"
+  pullPolicy: IfNotPresent
+service:
+  type: ClusterIP
+  port: 3000
+env:
+  DATABASE_PATH: /app/data/performance-tracker.db
+  PORT: 3000
+  HOST: 0.0.0.0
+resources: {}
