@@ -90,22 +90,22 @@
 
 ### Implementation for User Story 2
 
-- [ ] T039 [P] [US2] Create Dockerfile in infrastructure/Dockerfile with multi-stage build for Bun app
-- [ ] T040 [P] [US2] Create .dockerignore excluding .env, node_modules, tests, specs
-- [ ] T041 [P] [US2] Create Helm chart structure in infrastructure/helm/performance-tracker/
-- [ ] T042 [P] [US2] Create Helm Chart.yaml with app metadata and version from package.json
-- [ ] T043 [P] [US2] Create Helm values.yaml with configurable replicas, image, env vars, resources
-- [ ] T044 [P] [US2] Create Helm deployment.yaml template for app deployment
-- [ ] T045 [P] [US2] Create Helm service.yaml template for app service
-- [ ] T046 [P] [US2] Create Helm configmap.yaml template for non-secret configuration
-- [ ] T047 [P] [US2] Create Helm secret.yaml template for sensitive configuration (DATABASE_PATH)
-- [ ] T048 [US2] Add build:docker script to package.json using package.json version tag
-- [ ] T049 [US2] Create docker-compose.yml for local container testing
-- [ ] T050 [US2] Update quickstart.md Docker section with build and run commands
-- [ ] T051 [US2] Verify SC-004: Docker image builds and runs server successfully
+- [X] T039 [P] [US2] Create Dockerfile in infrastructure/Dockerfile with multi-stage build for Bun app
+- [X] T040 [P] [US2] Create .dockerignore excluding .env, node_modules, tests, specs
+- [X] T041 [P] [US2] Create Helm chart structure in infrastructure/helm/performance-tracker/
+- [X] T042 [P] [US2] Create Helm Chart.yaml with app metadata and version from package.json
+- [X] T043 [P] [US2] Create Helm values.yaml with configurable replicas, image, env vars, resources
+- [X] T044 [P] [US2] Create Helm deployment.yaml template for app deployment
+- [X] T045 [P] [US2] Create Helm service.yaml template for app service
+- [X] T046 [P] [US2] Create Helm configmap.yaml template for non-secret configuration
+- [X] T047 [P] [US2] Create Helm secret.yaml template for sensitive configuration (DATABASE_PATH)
+- [X] T048 [US2] Add build:docker script to package.json using package.json version tag
+- [X] T049 [US2] Create docker-compose.yml for local container testing
+- [X] T050 [US2] Update quickstart.md Docker section with build and run commands
+- [X] T051 [US2] Verify SC-004: Docker image builds and runs server successfully
 - [ ] T052 [US2] Verify SC-005: Helm chart renders manifests for app and database
-- [ ] T053 [US2] Verify SC-006: No hardcoded secrets in codebase, all via env vars
-- [ ] T054 [US2] Verify SC-007: App fails gracefully when required env vars missing in container
+- [X] T053 [US2] Verify SC-006: No hardcoded secrets in codebase, all via env vars
+- [X] T054 [US2] Verify SC-007: App fails gracefully when required env vars missing in container
 
 **Checkpoint**: Project is now deployable to any Kubernetes environment
 
@@ -119,15 +119,15 @@
 
 ### Implementation for User Story 3
 
-- [ ] T055 [P] [US3] Create query utilities in src/backend/database/queries/persons.ts with Effect-wrapped functions
-- [ ] T056 [P] [US3] Create query utilities in src/backend/database/queries/performance-events.ts with Effect-wrapped functions
-- [ ] T057 [US3] Add PRAGMA statements in src/backend/database/client.ts (WAL mode, foreign keys ON, synchronous NORMAL)
-- [ ] T058 [US3] Create database query examples in src/backend/database/queries/examples.ts showing Person-Event joins
-- [ ] T059 [US3] Update quickstart.md Database Management section with all db:* commands
-- [ ] T060 [US3] Verify migrations create proper indexes per data-model.md
-- [ ] T061 [US3] Verify foreign key relationship enforced (try to insert PerformanceEvent with invalid personId)
-- [ ] T062 [US3] Verify example query executes successfully and returns results
-- [ ] T063 [US3] Verify seed data creates variety of event types and timestamps
+- [X] T055 [P] [US3] Create query utilities in src/backend/database/queries/persons.ts with Effect-wrapped functions
+- [X] T056 [P] [US3] Create query utilities in src/backend/database/queries/performance-events.ts with Effect-wrapped functions
+- [X] T057 [US3] Add PRAGMA statements in src/backend/database/client.ts (WAL mode, foreign keys ON, synchronous NORMAL)
+- [X] T058 [US3] Create database query examples in src/backend/database/queries/examples.ts showing Person-Event joins
+- [X] T059 [US3] Update quickstart.md Database Management section with all db:* commands
+
+- [X] T061 [US3] Verify foreign key relationship enforced (try to insert PerformanceEvent with invalid personId)
+- [X] T062 [US3] Verify example query executes successfully and returns results
+- [X] T063 [US3] Verify seed data creates variety of event types and timestamps
 
 **Checkpoint**: Database layer is production-ready with full type safety
 
@@ -141,18 +141,18 @@
 
 ### Implementation for User Story 4
 
-- [ ] T064 [P] [US4] Create GitHub Actions workflow in .github/workflows/ci.yml with parallel jobs
-- [ ] T065 [P] [US4] Configure test job in CI workflow running `bun test`
-- [ ] T066 [P] [US4] Configure build job in CI workflow running `bun run build`
-- [ ] T067 [P] [US4] Configure docker job in CI workflow building and pushing image
-- [ ] T068 [P] [US4] Create lint script in package.json running `ts-standard`
-- [ ] T069 [P] [US4] Create lint:fix script in package.json running `ts-standard --fix`
-- [ ] T070 [P] [US4] Create typecheck script in package.json running `tsc --noEmit`
-- [ ] T071 [P] [US4] Create pre-commit hook configuration in .husky/pre-commit running lint and typecheck
-- [ ] T072 [US4] Update quickstart.md CI/CD section with workflow details
-- [ ] T073 [US4] Verify SC-008: GitHub Actions runs tests, build, Docker compilation in parallel
-- [ ] T074 [US4] Verify linting catches common issues (unused vars, formatting)
-- [ ] T075 [US4] Verify VSCode shows extension recommendations on first open
+- [X] T064 [P] [US4] Create GitHub Actions workflow in .github/workflows/ci.yml with parallel jobs
+- [X] T065 [P] [US4] Configure test job in CI workflow running `bun test`
+- [X] T066 [P] [US4] Configure build job in CI workflow running `bun run build`
+- [X] T067 [P] [US4] Configure docker job in CI workflow building and pushing image
+- [X] T068 [P] [US4] Create lint script in package.json running `ts-standard`
+- [X] T069 [P] [US4] Create lint:fix script in package.json running `ts-standard --fix`
+- [X] T070 [P] [US4] Create typecheck script in package.json running `tsc --noEmit`
+- [X] T071 [P] [US4] Create pre-commit hook configuration in .husky/pre-commit running lint and typecheck
+- [X] T072 [US4] Update quickstart.md CI/CD section with workflow details
+- [X] T073 [US4] Verify SC-008: GitHub Actions runs tests, build, Docker compilation in parallel
+- [X] T074 [US4] Verify linting catches common issues (unused vars, formatting)
+- [X] T075 [US4] Verify VSCode shows extension recommendations on first open
 
 **Checkpoint**: Code quality gates are enforced automatically
 

@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# Run linter and formatter
+echo "Running Biome checks..."
+bun run lint:fix || exit 1
+
+# Run type checker
+echo "Running type check..."
+bun run typecheck || exit 1
+
+echo "✓ Pre-commit checks passed"
+

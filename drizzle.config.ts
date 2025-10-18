@@ -7,8 +7,8 @@ import { defineConfig } from 'drizzle-kit'
 const dbPath = process.env.DATABASE_PATH ?? 'data/performance-tracker.db'
 
 export default defineConfig({
-  dialect: 'sqlite',
-  schema: 'src/backend/database/schema',
-  out: 'src/backend/database/migrations',
-  dbCredentials: { url: dbPath }
+	dialect: 'sqlite',
+	schema: 'src/backend/database/schema',
+	out: 'src/backend/database/migrations',
+	dbCredentials: { url: dbPath },
 })

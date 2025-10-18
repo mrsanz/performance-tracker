@@ -1,0 +1,21 @@
+# Common VCS
+.git/
+.gitignore
+
+# Node
+node_modules/
+dist/
+build/
+
+# Editor
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Tests and docs
+tests/
+specs/
+README.md

@@ -167,10 +167,7 @@ bun run db:generate
 # Run migrations
 bun run db:migrate
 
-# Rollback last migration (optionally specify version)
-bun run db:migrate:down <version>
-
-# Drop database and recreate
+# Drop database and recreate (re-runs migrations and seeds)
 bun run db:reset
 
 # Open database in Studio (Drizzle Kit)
@@ -179,6 +176,8 @@ bun run db:studio
 # Populate database with sample data
 bun run db:seed
 ```
+
+**Note**: This project uses forward-only migrations. To undo changes, use `db:reset` to drop and recreate the database, or manually write a new migration to reverse changes.
 
 ### Running Tests
 
@@ -446,27 +445,127 @@ Cmd/Ctrl+Shift+P -> "TypeScript: Restart TS Server"
 
 ### GitHub Actions
 
-Workflows run automatically on:
-- **Push to any branch**: Runs tests
-- **Pull Request**: Runs tests + build
-- **Push to main**: Runs tests + build + Docker image
+The project uses GitHub Actions for continuous integration and deployment. The workflow is defined in `.github/workflows/ci.yml` and runs automatically on:
 
-View workflow runs:
-```
-https://github.com/<org>/<repo>/actions
-```
+- **Push to branches**: `main`, `develop`, or any `feat/**` branch
+- **Pull Requests**: To `main` or `develop` branches
 
-### Running CI Locally
+#### Workflow Jobs (Run in Parallel)
+
+1. **Test Job**
+   - Runs all tests with `bun test`
+   - Uses Bun runtime
+   - Installs dependencies with frozen lockfile
+
+2. **Lint & Type Check Job**
+   - Runs `bun run lint` to check code style
+   - Runs `bun run typecheck` for TypeScript validation
+   - Ensures code quality standards
+
+3. **Build Job**
+   - Builds the server with `bun run build:server`
+   - Verifies build artifacts are created
+   - Ensures production build succeeds
+
+4. **Docker Job**
+   - Builds Docker image using multi-stage Dockerfile
+   - Uses Docker Buildx with GitHub Actions cache
+   - Runs container smoke test:
+     * Starts container with test configuration
+     * Waits for server startup
+     * Calls `/healthz` endpoint
+     * Verifies healthy response
+     * Cleans up test container
+   - Tags image with commit SHA
+
+#### Viewing Workflow Runs
 
 ```bash
-# Simulate CI environment
-bun run ci
+# View in GitHub UI
+https://github.com/<org>/<repo>/actions
 
-# This runs:
+# Or use GitHub CLI
+gh run list
+gh run view <run-id>
+gh run watch
+```
+
+#### Local Pre-commit Hooks
+
+The project uses Husky to run checks before each commit:
+
+```bash
+# Automatically runs on git commit:
+# 1. Linting (bun run lint)
+# 2. Type checking (bun run typecheck)
+
+# To skip hooks (not recommended):
+git commit --no-verify -m "message"
+```
+
+#### Running Full CI Suite Locally
+
+```bash
+# Run all CI checks manually:
+
 # 1. Linting
+bun run lint
+
 # 2. Type checking
+bun run typecheck
+
 # 3. Tests
+bun test
+
 # 4. Build
+bun run build:server
+
+# 5. Docker build
+bun run build:docker
+
+# 6. Container smoke test
+bun run smoke:container
+```
+
+#### CI Environment Variables
+
+The CI workflow uses these environment variables:
+- `DATABASE_PATH`: Set to `/data/test.db` for container tests
+- `PORT`: `3000`
+- `HOST`: `0.0.0.0` (to allow external connections in Docker)
+- `NODE_ENV`: `production`
+- `CORS_ORIGIN`: `http://localhost:5173`
+
+#### Troubleshooting CI Failures
+
+**Lint Failures**:
+```bash
+# Fix locally first
+bun run lint:fix
+git add .
+git commit
+```
+
+**Type Check Failures**:
+```bash
+# Run locally to see errors
+bun run typecheck
+# Fix errors, then commit
+```
+
+**Test Failures**:
+```bash
+# Run tests locally
+bun test
+# Or run specific failing test
+bun test path/to/test.ts
+```
+
+**Docker Build Failures**:
+```bash
+# Test Docker build locally
+bun run build:docker
+# Check Dockerfile and .dockerignore
 ```
 
 ---
