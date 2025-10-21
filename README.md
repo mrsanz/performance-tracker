@@ -1,10 +1,10 @@
-````markdown
+
 # Performance Tracker
 
-[![CI](https://img.shields.io/badge/CI-GitHub_Actions-blue)](https://github.com/performance-tracker/performance-tracker/actions)
+[![CI](https://github.com/mrsanz/performance-tracker/actions/workflows/ci.yaml/badge.svg)](https://github.com/mrsanz/performance-tracker/actions)
 [![Bun](https://img.shields.io/badge/runtime-Bun-orange)](https://bun.sh)
 [![TypeScript](https://img.shields.io/badge/language-TypeScript-blue)](https://www.typescriptlang.org/)
-[![License](https://img.shields.io/badge/license-MIT-green)]()
+[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
 A production-ready full-stack performance tracking application with Bun + Fastify backend, SQLite + Drizzle ORM, and React + Vite frontend. Built with Test-Driven Development (TDD), Effect-based error handling, and comprehensive infrastructure for local development and Kubernetes deployment.
 
@@ -63,20 +63,8 @@ git clone <repository-url>
 cd performance-tracker
 
 # Install dependencies
-bun install
+```markdown
 
-# Copy environment template
-cp .env.example .env
-
-# Initialize database (run migrations)
-bun run db:migrate
-
-# (Optional) Seed with sample data
-bun run db:seed
-
-# Start development servers (backend + frontend)
-bun run dev
-```
 
 The application will be running at:
 - **Frontend**: http://localhost:5173
@@ -314,5 +302,3 @@ Built with:
 ---
 
 **Made with ❤️ using Bun**
-
-````
