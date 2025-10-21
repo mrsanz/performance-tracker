@@ -4,17 +4,20 @@
 FROM oven/bun:latest AS builder
 WORKDIR /app
 COPY package.json bun.lock ./
-# Install only production dependencies to avoid building dev deps (e.g., better-sqlite3)
-ENV NODE_ENV=production
-RUN bun install --production
+# Install all dependencies (needed for build)
+RUN bun install --frozen-lockfile
 COPY . .
-# Build server bundle for production
-RUN bun run build:server
+# Build frontend and server bundle for production
+RUN bun run build
 
 # --- Production Stage ---
 FROM oven/bun:slim AS runtime
 WORKDIR /app
-COPY --from=builder /app /app
+
+# Copy only production files
+COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/src/frontend/dist ./src/frontend/dist
+COPY --from=builder /app/package.json ./package.json
 
 # Expose port (default 3000, can be overridden)
 EXPOSE 3000
