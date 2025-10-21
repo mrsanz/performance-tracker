@@ -3,6 +3,10 @@
 # --- Build Stage ---
 FROM oven/bun:latest AS builder
 WORKDIR /app
+
+# Install Python and build tools for native modules (better-sqlite3 used by drizzle-kit)
+RUN apt-get update && apt-get install -y python3 make g++ && rm -rf /var/lib/apt/lists/*
+
 COPY package.json bun.lock ./
 # Install all dependencies (needed for build)
 RUN bun install --frozen-lockfile
@@ -14,13 +18,10 @@ RUN bun run build
 FROM oven/bun:slim AS runtime
 WORKDIR /app
 
-# Copy package.json and lock file first
-COPY --from=builder /app/package.json /app/bun.lock ./
+# Copy package.json (metadata only - bun:sqlite is built-in, no node_modules needed)
+COPY --from=builder /app/package.json ./
 
-# Install only production dependencies (includes native modules like better-sqlite3)
-RUN bun install --production --frozen-lockfile
-
-# Copy built files
+# Copy built files (server bundle uses bun:sqlite, not better-sqlite3)
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/src/frontend/dist ./src/frontend/dist
 
