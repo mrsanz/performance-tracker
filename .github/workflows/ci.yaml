@@ -10,6 +10,12 @@ jobs:
   test:
     name: Run Tests
     runs-on: ubuntu-latest
+    env:
+      DATABASE_PATH: ./data/test.db
+      PORT: 3000
+      HOST: localhost
+      CORS_ORIGIN: http://localhost:5173
+      NODE_ENV: test
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -22,12 +28,24 @@ jobs:
       - name: Install dependencies
         run: bun install --frozen-lockfile
 
+      - name: Setup test database
+        run: |
+          mkdir -p data
+          bun run db:migrate
+          bun run db:seed
+
       - name: Run tests
         run: bun test
 
   lint:
     name: Lint & Type Check
     runs-on: ubuntu-latest
+    env:
+      DATABASE_PATH: ./data/test.db
+      PORT: 3000
+      HOST: localhost
+      CORS_ORIGIN: http://localhost:5173
+      NODE_ENV: test
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -49,6 +67,12 @@ jobs:
   build:
     name: Build Server
     runs-on: ubuntu-latest
+    env:
+      DATABASE_PATH: ./data/test.db
+      PORT: 3000
+      HOST: localhost
+      CORS_ORIGIN: http://localhost:5173
+      NODE_ENV: test
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
