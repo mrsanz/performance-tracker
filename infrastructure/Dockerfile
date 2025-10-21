@@ -25,6 +25,13 @@ COPY --from=builder /app/package.json ./
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/src/frontend/dist ./src/frontend/dist
 
+# Copy SQL migration files expected by dist/migrate.js (looks for ../migrations)
+COPY --from=builder /app/src/backend/database/migrations ./migrations
+
+# Add entrypoint to run migrations on startup, then launch the server
+COPY infrastructure/entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
 # Expose port (default 3000, can be overridden)
 EXPOSE 3000
 
@@ -40,9 +47,8 @@ RUN mkdir -p /app/data
 # Volume for persistent SQLite storage (container mode)
 VOLUME ["/app/data"]
 
-# Entrypoint for standalone or container mode
-# Run compiled server (no hot reload in production)
-CMD ["bun", "dist/server.js"]
+# Entrypoint runs migrations then starts the server
+ENTRYPOINT ["/entrypoint.sh"]
 
 # Usage:
 # Standalone: docker run --rm -p 3000:3000 performance-tracker

@@ -107,6 +107,7 @@ jobs:
           context: .
           file: ./infrastructure/Dockerfile
           push: false
+          load: true
           tags: performance-tracker:${{ github.sha }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
@@ -114,7 +115,7 @@ jobs:
       - name: Run container smoke test
         run: |
           docker run -d --name test-container \
-            -e DATABASE_PATH=/data/test.db \
+            -e DATABASE_PATH=/app/data/test.db \
             -e PORT=3000 \
             -e HOST=0.0.0.0 \
             -e NODE_ENV=production \
