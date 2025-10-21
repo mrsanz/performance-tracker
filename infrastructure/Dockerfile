@@ -14,10 +14,15 @@ RUN bun run build
 FROM oven/bun:slim AS runtime
 WORKDIR /app
 
-# Copy only production files
+# Copy package.json and lock file first
+COPY --from=builder /app/package.json /app/bun.lock ./
+
+# Install only production dependencies (includes native modules like better-sqlite3)
+RUN bun install --production --frozen-lockfile
+
+# Copy built files
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/src/frontend/dist ./src/frontend/dist
-COPY --from=builder /app/package.json ./package.json
 
 # Expose port (default 3000, can be overridden)
 EXPOSE 3000
