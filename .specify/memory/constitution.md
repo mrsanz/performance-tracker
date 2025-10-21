@@ -10,7 +10,13 @@ SYNC IMPACT REPORT:
 
 # Performance Tracker Constitution
 
+
 ## Core Principles
+
+### IX. Indexed Data for Paginated APIs
+All cursor-based (plural) API endpoints MUST only return indexed fields in their responses. This ensures fast pagination and efficient subsequent queries. To fetch full details, clients MUST use the singular endpoint (e.g., `/api/events/:id`, `/api/persons/:id`).
+
+**Rationale**: Guarantees scalable, performant API pagination and prevents unnecessary data transfer for list views.
 
 ### I. Data-First Architecture
 All data MUST be normalized and stored in SQLite for instant UI retrieval. No data transformation occurs in the frontend. APIs MUST serve materialized views only. Every database schema change requires migration scripts and backwards compatibility consideration during transition periods.
@@ -78,6 +84,7 @@ Long-lived data ingestion tasks MUST be isolated from the main API server with c
 **Code Organization**: Monorepo structure with clear API server/data ingestion/client separation and shared type definitions
 **Server Architecture**: Fastify plugin-based design enabling easy deconstruction into separate servers
 **API Design**: RESTful endpoints with Zod input validation, implicit response types, tested via fastify.inject()
+**Test Suffixes**: All end-to-end (E2E) tests or tests that modify application/database state MUST use a `.e2e.ts` file suffix. This ensures clear separation from unit/integration tests and prevents accidental state modification during standard test runs.
 **Data Ingestion**: Standardized interfaces for external data sources, idempotent transformations, resumable operations
 **Frontend Architecture**: Type-safe API client layer, Tailwind for styling, component library for data visualization
 **Testing Strategy**: TDD mandatory, Bun test runner with @testing-library, database test transactions with rollback
